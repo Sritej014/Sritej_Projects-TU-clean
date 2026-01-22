@@ -1,0 +1,7 @@
+Dependencies for Project 'Lab8', Target 'Lab8': (DO NOT MODIFY !)
+CompilerVersion: 6240000::V6.24::ARMCLANG
+F (.\startup.s)(0x57019B88)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-IC:/Users/srite/AppData/Local/Keil_v5/ARM/RV31/INC-IC:/Users/srite/AppData/Local/Keil_v5/ARM/CMSIS/Include-IC:/Users/srite/AppData/Local/Keil_v5/ARM/INC/Luminary-Wa,armasm,--pd,"__UVISION_VERSION SETA 543"-o ./startup.o)
+F (.\SwitchLEDInterface.c)(0x69592ECC)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I .. -I ../../..-IC:/Users/srite/AppData/Local/Keil_v5/ARM/RV31/INC-IC:/Users/srite/AppData/Local/Keil_v5/ARM/CMSIS/Include-IC:/Users/srite/AppData/Local/Keil_v5/ARM/INC/Luminary-D__UVISION_VERSION="543" -Drvmdk -DPART_LM4F120H5QR-o ./switchledinterface.o -MMD)
+I (TExaS.h)(0x56991342)
+I (..\tm4c123gh6pm.h)(0x51D462A2)
+F (.\texas.o)(0x5699114E)()

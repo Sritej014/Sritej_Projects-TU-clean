@@ -1,0 +1,11 @@
+# requirements.txt for CNN model and it's data preparation
+
+numpy>=1.19.0
+pandas>=1.1.0
+matplotlib>=3.3.0
+seaborn>=0.10.0
+scipy>=1.5.0
+librosa>=0.8.0
+tensorflow>=2.0.0
+scikit-learn>=0.23.0
+scikit-image>=0.16.0
