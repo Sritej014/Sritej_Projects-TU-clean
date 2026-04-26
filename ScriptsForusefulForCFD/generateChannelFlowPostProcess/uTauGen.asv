@@ -1,0 +1,69 @@
+%% Friction velocity vs Time from surfaceFieldValue_*.dat
+
+fileName = '/WORK/sritej/TASKFILES/Task1/FOR_EXPERIMENT/395_withprofile_temporal_validation_CFL/postProcessing/patchAverage(name=bottom,wallShearStressMean)/0.40392/surfaceFieldValue.dat';
+
+rho = 1.225;   % air density [kg/m^3]
+
+%% 1) Read data robustly
+fid = fopen(fileName, 'r');
+if fid == -1
+    error('Could not open file: %s', fileName);
+end
+
+% Columns: time  (tau_x tau_y tau_z)
+C = textscan(fid, '%f (%f %f %f)', ...
+    'CommentStyle', '#');   % ignore header lines starting with '#'
+fclose(fid);
+
+time  = C{1};
+tau_x = C{2};
+tau_y = C{3};
+tau_z = C{4};
+
+% Quick sanity check (you can comment this out later)
+fprintf('Read %d time samples\n', numel(time));
+
+%% 2) Compute |tau_w| and u_tau
+tau_mag = sqrt(tau_x.^2 + tau_y.^2 + tau_z.^2);   % shear-stress magnitude
+uTau    = sqrt(tau_mag ./ rho);                   % friction velocity
+
+% Values used for plotting the line (rounded)
+uTauLine = round(uTau, 2);
+
+%% 3) Plot
+figure;
+plot(time, uTauLine, '-s', ...
+    'Color', 'b', ...
+    'LineWidth', 1.5, ...
+    'MarkerFaceColor', 'b');
+hold on;
+
+% 4) Annotate each point (3 decimals), skip top values (> 0.82)
+for k = 1:numel(time)
+    if uTauLine(k) <= 0.82
+        txt  = sprintf('%.3f', uTau(k));  % 3 decimal places
+        yOff = uTauLine(k) + (uTauLine(k) < 0.815)*0.0015 + ...
+                           (uTauLine(k) >= 0.815)*0.0010;
+        text(time(k), yOff, txt, ...
+            'HorizontalAlignment', 'center', ...
+            'FontSize', 10, ...
+            'FontName', 'Arial');
+    end
+end
+
+%% 5) Axes formatting (Times New Roman, units, 3-decimal y-axis)
+set(gca, 'FontName', 'Arial', 'FontSize', 11);
+
+xlabel('Time (s)', 'FontName', 'Times New Roman');
+ylabel('Friction velocity (m s^{-1})', 'FontName', 'Times New Roman');
+title('Friction velocity (m s^{-1}) vs Time (s)', 'FontName', 'Times New Roman');
+
+grid on;
+box on;
+
+% Force y-ticks to show 3 decimal places
+yt = get(gca, 'YTick');
+set(gca, 'YTickLabel', compose('%.3f', yt));
+
+hold off;
+
