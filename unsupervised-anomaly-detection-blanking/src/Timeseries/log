@@ -1,0 +1,18 @@
+Original source:
+TDMS continuous recording
+
+Stroke origin:
+Trigger rising-edge intervals
+
+ML tensor:
+499 strokes × 512 resampled time points × 4 selected tool channels
+
+Useful channels:
+Trigger for segmentation
+Modul7_Oberwerkzeug strongly useful
+Modul7_Unterwerkzeug strongly useful
+Modul10_Unterwerkzeug strongly useful but redundant with Modul7_Unterwerkzeug
+Modul10_Oberwerkzeug weak / needs inspection
+
+Not useful in this file:
+DI1, DI2, Ticks, leer

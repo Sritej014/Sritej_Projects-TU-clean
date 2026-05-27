@@ -1,0 +1,6 @@
+Because exact stroke-to-image correspondence was not available, score-level fusion was performed on an index-aligned paired subset within each condition. Therefore, the fusion result should be interpreted as modality-level confirmation rather than exact cycle-level sensor fusion.
+Force alone already separates new and wear perfectly.
+Sheet PatchCore is the strongest image-only modality.
+Punch PatchCore is useful but less reliable.
+Image-only fusion of Punch + Sheet is almost perfect.
+Adding images to force does not improve AUC because force is already perfect, but it adds visual confirmation and interpretability.
