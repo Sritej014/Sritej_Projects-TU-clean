@@ -1,0 +1,5 @@
+Project Name: MCP Client Lab
+Version: 1.0.0
+Description: A hands-on lab for building MCP clients with Python
+Author: Skills Network
+Status: Active

@@ -1,0 +1,6 @@
+Lab Notes
+=========
+- MCP uses JSON-RPC 2.0
+- STDIO transport is great for local development
+- Resource templates use URI patterns with {parameters}
+- Tools are actions, Resources are data
