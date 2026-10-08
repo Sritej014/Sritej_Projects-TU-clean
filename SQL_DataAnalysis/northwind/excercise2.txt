@@ -1,0 +1,6 @@
+SELECT SUM(od.unit_price * od.quantity * (1 - od.discount)) AS total_sales, SUM(SUM(od.unit_price * od.quantity * (1 - od.discount))) OVER(ORDER BY DATE_TRUNC('month', order_date) ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS sales_by_month,
+DATE_TRUNC('month', order_date) AS month                                                                   
+FROM orders as o
+JOIN order_details as od
+ON o.order_id = od.order_id
+GROUP BY DATE_TRUNC('month', order_date)

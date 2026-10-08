@@ -1,0 +1,12 @@
+WITH cte AS (
+    SELECT  e.employee_id, e.first_name, e.last_name, SUM(od.unit_price * od.quantity * (1 - od.discount)) AS total_sales
+    FROM employees as e
+    JOIN orders as o
+    ON e.employee_id = o.employee_id
+    JOIN order_details as od
+    ON od.order_id = o.order_id
+    GROUP BY e.employee_id, e.first_name, e.last_name
+)
+
+SELECT *,RANK() OVER (ORDER BY total_sales DESC) AS rank_sales
+FROM cte

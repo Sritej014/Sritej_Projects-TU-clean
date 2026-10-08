@@ -1,0 +1,19 @@
+WITH total_sales_cte AS 
+(
+SELECT SUM(od.unit_price * od.quantity * (1 - od.discount)) AS total_sales, p.product_name, p.product_id, p.category_id, c.category_name
+FROM order_details AS od
+JOIN products AS p
+ON p.product_id = od.product_id
+JOIN categories AS c
+ON c.category_id = p.category_id
+GROUP BY p.product_id, p.product_name, p.category_id, c.category_name
+),
+row_cte  AS (
+SELECT category_id,total_sales, product_name, product_id, category_name, ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY total_sales DESC) AS row_number
+FROM total_sales_cte
+)
+
+SELECT *
+FROM row_cte
+WHERE row_number <=3 
+

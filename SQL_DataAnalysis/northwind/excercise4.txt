@@ -1,0 +1,29 @@
+WITH cte AS 
+(
+    
+SELECT SUM(od.unit_price * od.quantity * (1 - od.discount)) AS total_sales, od.order_id, c.customer_id
+FROM customers AS c
+JOIN orders AS o
+ON c.customer_id = o.customer_id
+JOIN order_details AS od
+ON od.order_id = o.order_id
+    
+ GROUP BY od.order_id, c.customer_id
+    ),
+    
+median_cte AS (
+
+SELECT PERCENTILE_DISC(0.5) WITHIN GROUP(ORDER BY cte.total_sales) AS median_value
+FROM cte 
+   
+
+)
+SELECT cte.customer_id,cte.total_sales, cte.order_id,
+CASE
+WHEN cte.total_sales > median_cte.median_value THEN 'Above-Average order values'
+ELSE 'Below-Average order values'
+END AS Average_or_not
+FROM cte, median_cte
+
+
+
